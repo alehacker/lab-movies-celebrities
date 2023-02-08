@@ -8,7 +8,7 @@ router.post('/create', (req, res, next)=>{
     Celebrity.create({
         name:req.body.name,
         occupation: req.body.occupation,
-        catchphrase:req.body.catchphrase,
+        catchphrase:req.body.catchphrase
        
     })
     .then((createdCeleb)=>{
@@ -24,6 +24,7 @@ router.post('/create', (req, res, next)=>{
 router.get('/', (req, res, next) => {
     Celebrity.find()
     .then((celebsfound) =>{
+        console.log('all the celebrities on this side:', celebsfound)
         res.render('celebrities/celebrities.hbs', {celebsfound})
     })
     .catch((err) =>{
@@ -36,3 +37,4 @@ router.get('/', (req, res, next) => {
 
 
 module.exports = router;
+

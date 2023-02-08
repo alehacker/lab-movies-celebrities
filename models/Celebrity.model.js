@@ -5,8 +5,8 @@ const { Schema, model } = require('mongoose');
 const celebritySchema = new Schema(
   {
     name: String,
-    ocupation: String,
-    catchPhrase: String,
+    occupation: String,
+    catchphrase: String,
   },
   {
     timestamps: true
