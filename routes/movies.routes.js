@@ -7,7 +7,7 @@ router.get('/create', (req, res, next) => {
     Celebrity.find()
     .then((celebsfound) => {
         console.log('here are the celebs I found:', celebsfound)
-        res.render('movies/new-movie.hbs', celebsfound)
+        res.render('movies/new-movie.hbs', {celebsfound})
     })
     .catch((err) => {
         console.log('Error creating a movie:', err)
