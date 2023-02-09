@@ -1,6 +1,7 @@
 const router = require("express").Router();
 const Celebrity = require('../models/Celebrity.model');
 
+//Iteration #3: Adding New Celebrities
 router.get('/create', (req, res, next) => {  
     res.render('celebrities/new-celebrity.hbs')
 })
@@ -21,6 +22,7 @@ router.post('/create', (req, res, next)=>{
     })
 })
 
+//Iteration #4: Listing Our Celebrities
 router.get('/', (req, res, next) => {
     Celebrity.find()
     .then((celebsfound) =>{

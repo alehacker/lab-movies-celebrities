@@ -1,3 +1,5 @@
+//Iteration #5: The movie model
+
 const { Schema, model } = require('mongoose');
 
 const movieSchema = new Schema(
@@ -15,4 +17,4 @@ const movieSchema = new Schema(
   }
 );
 
-module.exports = model('movies', movieSchema);
+module.exports = model('Movie', movieSchema);

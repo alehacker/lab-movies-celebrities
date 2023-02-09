@@ -1,4 +1,5 @@
 //  Add your code here
+//Iteration #2: The Celebrity model
 
 const { Schema, model } = require('mongoose');
 

@@ -2,7 +2,7 @@ const router = require("express").Router();
 const Movie = require('../models/Movie.model');
 const Celebrity = require('../models/Celebrity.model');
 
-
+//Iteration #6: Adding New Movies
 router.get('/create', (req, res, next) => {  
     Celebrity.find()
     .then((celebsfound) => {
@@ -21,17 +21,15 @@ router.post('/create', (req, res, next) => {
     Movie.create({ title, genre, plot, cast})
     .then((newMovie) => {
         console.log('this is the new movie', newMovie)
-        res.redirect('movies')
+        res.redirect('/movies')
     })
     .catch((err) => {
         res.render('movies/new-movie.hbs')
         console.log('Error posting a new movie:', err)
     })
-   
-
 })
 
-
+//Iteration #7: Listing Our Movies
 router.get('/', (req, res, next) => {
     Movie.find()
     .then((moviesfound) =>{
@@ -43,12 +41,16 @@ router.get('/', (req, res, next) => {
     })
 })
 
+
+//Iteration #8: The Movie Details Page
 router.get('/:id', (req, res, next) => {
     //What parameter do I need to pass on the populate() method
-    Movie.findById(req.params.id).populate("cast")
-    .then((moviesfound) => {
-        console.log('Found this movie', moviesfound)
-        res.render('movies/movie-details.hbs', moviesfound)
+    Movie.findById(req.params.id)
+    .populate('cast')
+    .then((moviefound) => {
+        console.log('the cast of my movie',moviefound.cast)
+        console.log('Found this movie', moviefound)
+        res.render('movies/movie-details.hbs', moviefound)
     })
     .catch((err) => {
         console.log(err)
@@ -57,7 +59,7 @@ router.get('/:id', (req, res, next) => {
 })
 
 
-
+//Iteration #9: Deleting Movies
 router.post('/:id/delete', (req, res, next) => {
     Movie.findByIdAndRemove(req.params.id)
     .then((deletedMovie) => {
@@ -69,6 +71,8 @@ router.post('/:id/delete', (req, res, next) => {
     })
 })
 
+
+//Iteration #10: Editing Movies
 router.get('/:id/edit', (req, res, next) => {
     Movie.findByIdAndUpdate(req.params.id)
     Celebrity.find()
