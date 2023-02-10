@@ -73,14 +73,28 @@ router.post('/:id/delete', (req, res, next) => {
 
 
 //Iteration #10: Editing Movies
+//this code was 'fixed' by chatgpt
 router.get('/:id/edit', (req, res, next) => {
-    Movie.findByIdAndUpdate(req.params.id)
+    // const id = mongoose.Types.ObjectId(req.params.id);
     Celebrity.find()
-    .then((updatedMovie) => {
-
+    .then ((celebsfound) =>{
+        Movie.findById(id)
+        .populate('cast')
+        .then((movieFound) => {
+            if (!movieFound) {
+                return next(createError(404, 'Movie not found'));
+            }
+            res.render('movies/edit-movie.hbs', {movieFound: movieFound, celebsfound:celebsfound} )
+        })
+        .catch(error => next(error));
     })
-})
+    .catch(error => next(error));
+});
+
+
 
 
 
 module.exports = router;
+
+
